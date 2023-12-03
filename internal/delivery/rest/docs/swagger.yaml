@@ -1,0 +1,249 @@
+definitions:
+  domain.PasswordReset:
+    properties:
+      confirm_password:
+        type: string
+      email:
+        type: string
+      new_password:
+        type: string
+      otp:
+        type: string
+      phone_number:
+        type: string
+    required:
+    - confirm_password
+    - new_password
+    type: object
+  domain.SignIn:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      phone_number:
+        type: string
+    required:
+    - password
+    type: object
+  domain.SignUp:
+    properties:
+      confirm_password:
+        type: string
+      email:
+        type: string
+      fio:
+        type: string
+      new_password:
+        type: string
+      otp:
+        type: string
+      phone_number:
+        type: string
+    required:
+    - confirm_password
+    - fio
+    - new_password
+    type: object
+info:
+  contact: {}
+  description: Created by Otajonov Quvonchbek
+paths:
+  /v1/check-code:
+    post:
+      consumes:
+      - application/json
+      description: This api can reset password
+      parameters:
+      - description: PasswordReset
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.PasswordReset'
+      produces:
+      - application/json
+      responses:
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Reset password
+      tags:
+      - Password-reset
+  /v1/check-user:
+    post:
+      consumes:
+      - application/json
+      description: This api can Check user and send code telegram
+      parameters:
+      - description: PasswordReset
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.PasswordReset'
+      produces:
+      - application/json
+      responses:
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Check user and send code telegram
+      tags:
+      - Password-reset
+  /v1/send-code:
+    post:
+      consumes:
+      - application/json
+      description: This api can send code telegram
+      parameters:
+      - description: phone_email
+        in: query
+        name: phone_email
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Send code telegram
+      tags:
+      - Send
+  /v1/sign-in-email:
+    post:
+      consumes:
+      - application/json
+      description: This api can sign-in user by email
+      parameters:
+      - description: Sign
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.SignIn'
+      produces:
+      - application/json
+      responses:
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Sign-in user by email
+      tags:
+      - Sign-In
+  /v1/sign-in-phone:
+    post:
+      consumes:
+      - application/json
+      description: This api can sign-in user by phone
+      parameters:
+      - description: Sign
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.SignIn'
+      produces:
+      - application/json
+      responses:
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Sign-in user by phone
+      tags:
+      - Sign-In
+  /v1/sign-up-email:
+    post:
+      consumes:
+      - application/json
+      description: This api can Sign-Up new user by email
+      parameters:
+      - description: Sign
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.SignUp'
+      produces:
+      - application/json
+      responses:
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Sign-Up user by email
+      tags:
+      - Sign-Up
+  /v1/sign-up-phone:
+    post:
+      consumes:
+      - application/json
+      description: This api can Sign-Up new user by phone
+      parameters:
+      - description: Sign
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.SignUp'
+      produces:
+      - application/json
+      responses:
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Sign-Up user by email
+      tags:
+      - Sign-Up
+  /v1/update-password-email:
+    post:
+      consumes:
+      - application/json
+      description: This api can update password by phone
+      parameters:
+      - description: PasswordReset
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.PasswordReset'
+      produces:
+      - application/json
+      responses:
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Update password by phone
+      tags:
+      - Password-reset
+  /v1/update-password-phone:
+    post:
+      consumes:
+      - application/json
+      description: This api can update password by phone
+      parameters:
+      - description: PasswordReset
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.PasswordReset'
+      produces:
+      - application/json
+      responses:
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Update password by phone
+      tags:
+      - Password-reset
+swagger: "2.0"
